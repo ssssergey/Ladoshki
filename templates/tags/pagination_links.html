@@ -1,0 +1,17 @@
+{% if p.has_other_pages %}
+    {% if p.has_previous %}
+        <a href="{{ request.path }}?{{ params }}&page={{ p.previous_page_number }}">
+            &laquo; Предыдущая
+        </a>
+    {% else %}
+        &laquo; Предыдущая
+    {% endif %}
+    | Страница {{ p.number }} из {{ paginator.num_pages }} |
+    {% if p.has_next %}
+        <a href="{{ request.path }}?{{ params }}&page={{ p.next_page_number }}">
+            Следующая &raquo;
+        </a>
+    {% else %}
+        Следующая &raquo;
+    {% endif %}
+{% endif %}

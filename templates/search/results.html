@@ -1,0 +1,12 @@
+{% extends "catalog.html" %}
+{% load search_tags %}
+{% block content %}
+    <h1>Результат поиска для: '{{ q }}'</h1>
+    {% for p in results %}
+        {% include 'tags/product_thumbnail.html' %}
+    {% empty %}
+        Не найдено товаров по данному запросу.
+    {% endfor %}
+    <div class="cb">&nbsp;</div>
+    {% pagination_links request paginator %}
+{% endblock %}
