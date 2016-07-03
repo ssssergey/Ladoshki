@@ -3,21 +3,30 @@
 from django.shortcuts import get_object_or_404, render_to_response
 from catalog.models import Category, Product
 from django.template import RequestContext
-
+from django.db.models import Q
 from django.core import urlresolvers
 # from cart import cart
 from django.http import HttpResponseRedirect
 from forms import ProductAddToCartForm
 
+from stats import stats
+from Ladoshki.settings import PRODUCTS_PER_ROW
 
 def index(request, template_name="catalog/index.html"):
     page_title = u'Ладошки'
+    search_recs = stats.recommended_from_search(request)
+    featured = Product.featured.all()[0:PRODUCTS_PER_ROW]
+    recently_viewed = stats.get_recently_viewed(request)
+    view_recs = stats.recommended_from_views(request)
     return render_to_response(template_name, locals(), context_instance=RequestContext(request))
 
 
-def show_category(request, category_slug, template_name="catalog/category.html"):
+def show_category(request, category_slug, gender='', template_name="catalog/category.html"):
     c = get_object_or_404(Category, slug=category_slug)
+    gender = gender.upper()
     products = c.product_set.all()
+    if gender:
+        products = products.filter(Q(gender = gender) | Q(gender = 'UNI'))
     page_title = c.name
     meta_keywords = c.meta_keywords
     meta_description = c.meta_description
@@ -52,5 +61,5 @@ def show_product(request, product_slug, template_name="catalog/product.html"):
     form.fields['product_slug'].widget.attrs['value'] = product_slug
     # set the test cookie on our first GET request
     request.session.set_test_cookie()
-    return render_to_response("catalog/product.html", locals(),context_instance=RequestContext(request))
-
+    stats.log_product_view(request, p)  # add to product view
+    return render_to_response("catalog/product.html", locals(), context_instance=RequestContext(request))

@@ -17,7 +17,9 @@ ALLOWED_HOSTS = ['*']
 
 SITE_ID = 1
 
-PRODUCTS_PER_PAGE = 2
+PRODUCTS_PER_PAGE = 12
+
+PRODUCTS_PER_ROW = 4
 
 # Application definition
 
@@ -32,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'catalog',
     'search',
+    'stats',
 ]
 
 MIDDLEWARE_CLASSES = [

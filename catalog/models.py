@@ -7,13 +7,16 @@ from django.db import models
 
 from django.db import models
 
+
 class ActiveProductManager(models.Manager):
     def get_query_set(self):
         return super(ActiveProductManager, self).get_query_set().filter(is_active=True)
 
+
 class ActiveCategoryManager(models.Manager):
     def get_query_set(self):
         return super(ActiveCategoryManager, self).get_query_set().filter(is_active=True)
+
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
@@ -42,6 +45,16 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse('catalog_category', args=(self.slug,))
 
+    def get_absolute_url_boys(self):
+        return reverse('catalog_category', args=(self.slug, u'boy'))
+
+    def get_absolute_url_girls(self):
+        return reverse('catalog_category', args=(self.slug, u'girl'))
+
+
+class FeaturedProductManager(models.Manager):
+    def all(self):
+        return super(FeaturedProductManager, self).all().filter(is_active=True).filter(is_featured=True)
 
 
 class Product(models.Model):
@@ -77,8 +90,7 @@ class Product(models.Model):
     image_caption = models.CharField(max_length=200)
     objects = models.Manager()
     active = ActiveProductManager()
-
-
+    featured = FeaturedProductManager()
 
     class Meta:
         db_table = 'products'
