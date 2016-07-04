@@ -1,8 +1,5 @@
-<form id="search" action="{% url 'search_results' %}" method="get">
+<form role="form" class="form-group" id="search" action="{% url 'search_results' %}" method="get">
     <h3><label for="id_q">Поиск</label></h3>
-
-    <div style="text-align:right;">
-        {{ form.q }}
-        <input type="submit" value="Поиск"/>
-    </div>
+    {{ form.q }}
+    <input class="btn btn-info" type="submit" value="Поиск"/>
 </form>

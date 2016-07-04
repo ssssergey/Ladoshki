@@ -1,31 +1,37 @@
 {% extends "catalog.html" %}
 {% load catalog_filters %}
 {% block content %}
-    <div class="product_image">
-        <img src="{{ p.image.url }}" alt="{{ p.name }}"/>
-{#        {{ p.image_caption }}#}
-    </div>
-    <h1>{{ p.name }}</h1>
-    <br/><br/>
-    В категори{{ categories.count|pluralize:"и,ях" }}:
-    {% for c in categories %}
-        <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-        {% if not forloop.last %}, {% endif %}
-    {% endfor %}
-    <br/><br/>
-    {% if p.sale_price %}
-        Было:
-        <del> {{ p.old_price }} руб.</del>
-        <br/>
-        Сейчас: {{ p.price }} руб.
-    {% else %}
-        Цена: {{ p.price }} руб.
-    {% endif %}
-    <br/><br/>
+    <div class="row">
+        <div class="col-md-8 product-image">
+            <img src="{{ p.image.url }}" alt="{{ p.name }}"/>
+            {#        {{ p.image_caption }}#}
+        </div>
 
-    <div class="cb"></div>
-    <br/><br/>
-    <div class="cb"><br/><br/></div>
-    <h3>Описание</h3>
-    {{ p.description }}
+
+        <div class="col-md-4 product-info" >
+            <h1>{{ p.name }}</h1>
+            В категори{{ categories.count|pluralize:"и,ях" }}:
+            {% for c in categories %}
+                <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                {% if not forloop.last %}, {% endif %}
+            {% endfor %}
+            <br/><br/>
+            {% if p.sale_price %}
+                Было:
+                <del> {{ p.old_price }} руб.</del>
+                <br/>
+                Сейчас: {{ p.price }} руб.
+            {% else %}
+                Цена: {{ p.price }} руб.
+            {% endif %}
+            <br/><br/>
+
+            <h3>Описание</h3>
+            {{ p.description }}
+        </div>
+    </div>
+    <div class="row">
+        <div style="clear: both;"><br/><br/></div>
+
+    </div>
 {% endblock %}

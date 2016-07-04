@@ -1,6 +1,8 @@
+<div class="cat-menu">
 <h3>Категории</h3>
+<hr>
 <h4>Мальчики</h4>
-<ul id="categories">
+<ul class="cat_list">
     {% with boys_cat as cats %}
         {% for c in cats %}
             <li>
@@ -14,7 +16,7 @@
     {% endwith %}
 </ul>
 <h4>Девочки</h4>
-<ul id="categories">
+<ul class="cat_list">
     {% with girls_cat as cats %}
         {% for c in cats %}
             <li>
@@ -27,3 +29,4 @@
         {% endfor %}
     {% endwith %}
 </ul>
+</div>

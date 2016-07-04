@@ -1,9 +1,14 @@
-        <div class="product_thumbnail">
-            <a href="{{ p.get_absolute_url }}">
-                <img src="{{ p.thumbnail.url}}" alt="{{ p.name }}" class="bn"/>
+<div class="col-md-3 col-sm-6 hero-feature">
+    <div class="thumbnail">
+        <a href="{{ p.get_absolute_url }}">
+            <img src="{{ p.thumbnail.url }}" alt="{{ p.name }}" class="bn"/>
+
+            <div class="caption">
                 <br/>
                 {{ p.name }}
                 <br>
-                {{ p.price | floatformat:"0"}} руб.
-            </a>
-        </div>
+                {{ p.price | floatformat:"0" }} руб.
+            </div>
+        </a>
+    </div>
+</div>

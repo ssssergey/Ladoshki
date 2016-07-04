@@ -1,9 +1,15 @@
 {% extends "catalog.html" %}
 {% load catalog_tags %}
 {% block content %}
-    <h2>Добро пожаловать в наш магазин!</h2>
-    {% product_list recently_viewed 'Недавно Вы смотрели эти товары' %}
-    {% product_list view_recs 'Похожие товары' %}
-    {% product_list featured 'Особые товары' %}
-    {% product_list search_recs 'Рекомендовано Вам' %}
+    <div class="row text-center">
+        <h1 class="title">Магазин детской одежды "Ладошки"</h1>
+        <p class="title">г. Железнодорожный, ул. Юбилейная, д.6 стр.1., ТЦ "Теремок".</p>
+        <img src="/static/images/jumbo.jpg">
+        <hr>
+
+        {% product_list recently_viewed 'Недавно Вы смотрели эти товары' %}
+        {% product_list view_recs 'Похожие товары' %}
+        {% product_list featured 'Особые товары' %}
+        {% product_list search_recs 'Рекомендовано Вам' %}
+    </div>
 {% endblock %}
