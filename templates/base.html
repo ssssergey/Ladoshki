@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name='yandex-verification' content='554a1662547fef44'/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>{% block title %}{% if page_title %}{{ page_title }} - {% endif %}{{ site_name }}{% endblock %}</title>
     <meta name="keywords" content="{{ meta_keywords }}"/>
     <meta name="description" content="{{ meta_description }}"/>
-{#    <link rel="Stylesheet" type="text/css" href="/static/css/css.css"/>#}
+    {#    <link rel="Stylesheet" type="text/css" href="/static/css/css.css"/>#}
     <!-- Bootstrap Core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 
@@ -22,5 +23,66 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="/static/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("form#search").submit(function () {
+            text = $("#id_q").val();
+            if (text == "" || text == "Поиск") {
+// if empty, pop up alert
+                alert("Укажите, что Вы хотите найти.");
+// halt submission of form
+                return false;
+            }
+        });
+    });
+</script>
 </body>
+<div style="position: fixed; bottom: 0px;">
+    <!-- Yandex.Metrika informer -->
+    <a href="https://metrika.yandex.ru/stat/?id=38322625&amp;from=informer"
+       target="_blank" rel="nofollow"><img
+            src="https://informer.yandex.ru/informer/38322625/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+            style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика"
+            title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)"
+            onclick="try{Ya.Metrika.informer({i:this,id:38322625,lang:'ru'});return false}catch(e){}"/></a>
+    <!-- /Yandex.Metrika informer -->
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function () {
+                try {
+                    w.yaCounter38322625 = new Ya.Metrika({
+                        id: 38322625,
+                        clickmap: true,
+                        trackLinks: true,
+                        accurateTrackBounce: true,
+                        webvisor: true
+                    });
+                } catch (e) {
+                }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                    s = d.createElement("script"),
+                    f = function () {
+                        n.parentNode.insertBefore(s, n);
+                    };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else {
+                f();
+            }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript>
+        <div><img src="https://mc.yandex.ru/watch/38322625" style="position:absolute; left:-9999px;" alt=""/></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+</div>
 </html>

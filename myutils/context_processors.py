@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Ladoshki import settings
 def ecomstore(request):
     return {

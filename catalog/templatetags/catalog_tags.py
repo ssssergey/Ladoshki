@@ -14,8 +14,8 @@ register = template.Library()
 @register.inclusion_tag("tags/category_list.html")
 def category_list(request_path):
     active_categories = Category.active.filter(is_active=True)
-    boys_cat = active_categories.filter(Q(product__gender = 'BOY') | Q(product__gender = 'UNI')).distinct()
-    girls_cat = active_categories.filter(Q(product__gender = 'GIRL') | Q(product__gender = 'UNI')).distinct()
+    boys_cat = active_categories.filter(Q(product__gender = 'BOY') | Q(product__gender = 'UNI')).distinct().order_by('name')
+    girls_cat = active_categories.filter(Q(product__gender = 'GIRL') | Q(product__gender = 'UNI')).distinct().order_by('name')
     return {
         # 'active_categories': active_categories,
         'boys_cat': boys_cat,
