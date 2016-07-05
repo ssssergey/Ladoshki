@@ -1,0 +1,29 @@
+{% extends "catalog.html" %}
+{% block content %}
+    {% if form.errors %}
+        <ul class="errorlist">
+            <li>Вы ввели неверный логин или пароль.</li>
+        </ul>
+        <br/>
+    {% endif %}
+    <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+    {% csrf_token %}
+        <table summary="Login" id="login">
+            <caption>Вход</caption>
+            <tr>
+                <td>{{ form.username.label_tag }}:</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}:</td>
+                <td>{{ form.password }}</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="right">
+                    <input type="submit" value="Вход"/>
+                </td>
+            </tr>
+        </table>
+        <input type="hidden" name="next" value="{{ next }}"/>
+    </form>
+{% endblock %}

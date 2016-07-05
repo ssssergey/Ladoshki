@@ -3,6 +3,7 @@ from views import *
 
 urlpatterns = [
     url(r'^$', index, {'template_name': 'catalog/index.html'}, 'catalog_home'),
+    url(r'^review/product/add/$', add_review),
     url(r'^category/(?P<category_slug>[-\w]+)/$', show_category, {'template_name': 'catalog/category.html'},
         name='catalog_category'),
     url(r'^category/(?P<category_slug>[-\w]+)/(?P<gender>[-\w]+)/$', show_category, {'template_name': 'catalog/category.html'},

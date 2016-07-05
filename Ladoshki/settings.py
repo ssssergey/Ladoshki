@@ -7,6 +7,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: don't run with debug turned on in production!
 SECRET_KEY = secret_key
 
+ENABLE_SSL = False
+
+LOGIN_REDIRECT_URL = '/'
+
+AUTH_PROFILE_MODULE = 'accounts.userprofile'
+
 # SECURITY WARNING: don't run with debug turned on in production!
 # if os.name != 'nt':
 #     DEBUG = False
@@ -35,6 +41,7 @@ INSTALLED_APPS = [
     'catalog',
     'search',
     'stats',
+    'accounts'
 ]
 
 MIDDLEWARE_CLASSES = [

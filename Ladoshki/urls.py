@@ -10,5 +10,6 @@ urlpatterns = [
     url(r'^search/', include('search.urls')),
     url(r'^', include('catalog.urls')),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
-
+    url(r'^accounts/', include('accounts.urls')),
+    url(r'^accounts/', include('django.contrib.auth.urls'))
 ]

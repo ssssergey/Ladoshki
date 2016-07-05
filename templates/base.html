@@ -24,19 +24,7 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="/static/js/bootstrap.min.js"></script>
 
-<script>
-    $(document).ready(function () {
-        $("form#search").submit(function () {
-            text = $("#id_q").val();
-            if (text == "" || text == "Поиск") {
-// if empty, pop up alert
-                alert("Укажите, что Вы хотите найти.");
-// halt submission of form
-                return false;
-            }
-        });
-    });
-</script>
+<script src="/static/js/script.js"></script>
 </body>
 <div style="position: fixed; bottom: 0px;">
     <!-- Yandex.Metrika informer -->
@@ -63,7 +51,6 @@
                 } catch (e) {
                 }
             });
-
             var n = d.getElementsByTagName("script")[0],
                     s = d.createElement("script"),
                     f = function () {

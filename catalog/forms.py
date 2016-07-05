@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from catalog.models import Product
+from catalog.models import Product, ProductReview
 
 
 class ProductAdminForm(forms.ModelForm):
@@ -30,3 +30,17 @@ class ProductAddToCartForm(forms.Form):
             if not self.request.session.test_cookie_worked():
                 raise forms.ValidationError(u"Включите куки в настройках браузера.")
         return self.cleaned_data
+
+
+class ProductReviewForm(forms.ModelForm):
+    class Meta:
+        model = ProductReview
+        exclude = ('user', 'product', 'is_approved')
+
+    def __init__(self, *args, **kwargs):
+        super(ProductReviewForm, self).__init__(*args, **kwargs)
+        default_text = u'Ваш отзыв'
+        self.fields['content'].widget.attrs['value'] = default_text
+        self.fields['content'].widget.attrs['class'] = 'form-control'
+        self.fields['rating'].widget.attrs['class'] = 'form-control'
+        self.fields['rating'].widget.attrs['cols'] = 5

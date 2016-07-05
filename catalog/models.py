@@ -1,16 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.core.urlresolvers import reverse
-from django.db import models
-
-# Create your models here.
+from django.contrib.auth.models import User
 
 from django.db import models
 
 
-class ActiveProductManager(models.Manager):
-    def get_query_set(self):
-        return super(ActiveProductManager, self).get_query_set().filter(is_active=True)
+
 
 
 class ActiveCategoryManager(models.Manager):
@@ -28,7 +24,7 @@ class Category(models.Model):
                                      help_text='Comma-delimited set of SEO keywords for meta tag')
     meta_description = models.CharField(u'Мета описание', max_length=255,
                                         help_text='Content for description meta tag')
-    created_at = models.DateTimeField(u'Создана',auto_now_add=True)
+    created_at = models.DateTimeField(u'Создана', auto_now_add=True)
     updated_at = models.DateTimeField(u'Изменена', auto_now=True)
     objects = models.Manager()
     active = ActiveCategoryManager()
@@ -56,6 +52,9 @@ class FeaturedProductManager(models.Manager):
     def all(self):
         return super(FeaturedProductManager, self).all().filter(is_active=True).filter(is_featured=True)
 
+class ActiveProductManager(models.Manager):
+    def get_query_set(self):
+        return super(ActiveProductManager, self).get_query_set().filter(is_active=True)
 
 class Product(models.Model):
     GENDER_CHOICE = (
@@ -80,7 +79,8 @@ class Product(models.Model):
     is_featured = models.BooleanField(u'Спецпредложение', default=False)
     quantity = models.IntegerField(u'Количество', default=1)
     description = models.TextField(u'Описание')
-    meta_keywords = models.CharField(u'Мета ключевые слова', max_length=255, help_text='Comma-delimited set of SEO keywords for meta tag')
+    meta_keywords = models.CharField(u'Мета ключевые слова', max_length=255,
+                                     help_text='Comma-delimited set of SEO keywords for meta tag')
     meta_description = models.CharField(u'Мета описание', max_length=255, help_text='Content for description meta tag')
     created_at = models.DateTimeField(u'Создан', auto_now_add=True)
     updated_at = models.DateTimeField(u'Изменен', auto_now=True)
@@ -107,3 +107,21 @@ class Product(models.Model):
             return self.price
         else:
             return None
+
+
+class ActiveProductReviewManager(models.Manager):
+    def all(self):
+        return super(ActiveProductReviewManager, self).all().filter(is_approved=True)
+
+
+class ProductReview(models.Model):
+    RATINGS = ((5, 5), (4, 4), (3, 3), (2, 2), (1, 1),)
+
+    product = models.ForeignKey(Product, verbose_name=u'Товар')
+    user = models.ForeignKey(User, verbose_name=u'Пользователь')
+    date = models.DateTimeField(u'Создан', auto_now_add=True)
+    rating = models.PositiveSmallIntegerField(u'Рейтинг', default=5, choices=RATINGS)
+    is_approved = models.BooleanField(u'Одобрен', default=True)
+    content = models.TextField(u'Текст')
+    objects = models.Manager()
+    approved = ActiveProductReviewManager()

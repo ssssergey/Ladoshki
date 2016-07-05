@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
-from django.contrib import admin
 
-# Register your models here.
 from django.contrib import admin
-from catalog.models import Product, Category
+from catalog.models import Product, Category, ProductReview
 # from catalogu.forms import ProductAdminForm
 class ProductAdmin(admin.ModelAdmin):
     # form = ProductAdminForm
@@ -18,6 +16,7 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('name',)}
 # registers your product model with the admin site
 admin.site.register(Product, ProductAdmin)
+
 class CategoryAdmin(admin.ModelAdmin):
     #sets up values for how admin site lists categories
     list_display = ('name', 'created_at', 'updated_at',)
@@ -29,3 +28,11 @@ class CategoryAdmin(admin.ModelAdmin):
     # sets up slug to be generated from category name
     prepopulated_fields = {'slug' : ('name',)}
 admin.site.register(Category, CategoryAdmin)
+
+class ProductReviewAdmin(admin.ModelAdmin):
+    list_display = ('product', 'user', 'date', 'rating', 'is_approved')
+    list_per_page = 20
+    list_filter = ('product', 'user', 'is_approved')
+    ordering = ['date']
+    search_fields = ['user','content']
+admin.site.register(ProductReview, ProductReviewAdmin)

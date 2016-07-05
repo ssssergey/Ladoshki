@@ -9,7 +9,7 @@
 }
 
 .navbar-brand, .navbar-nav > li > a {
-    color: white!important;
+    color: white !important;
 }
 
 .navbar-brand:hover, .navbar-nav > li > a:hover {
@@ -24,16 +24,16 @@
 }
 
 ul {
-    list-style-type: none!important;
+    list-style-type: none !important;
     padding-left: 10px;
 }
 
 li a.category {
-    color: white!important;
+    color: white !important;
 }
 
 li a.category:hover {
-    color: #c6c6c6!important;
+    color: #c6c6c6 !important;
     text-decoration: none;
 }
 
@@ -65,4 +65,24 @@ footer a {
 
 form#search input.btn {
     background-color: #168DE2;
+}
+
+#add_review {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none!important;
+}
+
+.visible {
+    display: block!important;
+}
+
+.new_review {
+    background-color: Pink;
+}
+
+.cb {
+    clear: both;
 }

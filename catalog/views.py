@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import get_object_or_404, render_to_response
-from catalog.models import Category, Product
+from catalog.models import Category, Product, ProductReview
 from django.template import RequestContext
 from django.db.models import Q
 from django.core import urlresolvers
 # from cart import cart
 from django.http import HttpResponseRedirect
-from forms import ProductAddToCartForm
+from forms import ProductAddToCartForm, ProductReviewForm
 
 from stats import stats
 from Ladoshki.settings import PRODUCTS_PER_ROW
@@ -62,4 +62,30 @@ def show_product(request, product_slug, template_name="catalog/product.html"):
     # set the test cookie on our first GET request
     request.session.set_test_cookie()
     stats.log_product_view(request, p)  # add to product view
+    product_reviews = ProductReview.approved.filter(product=p).order_by('-date')
+    review_form = ProductReviewForm()
     return render_to_response("catalog/product.html", locals(), context_instance=RequestContext(request))
+
+from catalog.models import Category, Product, ProductReview
+from django.contrib.auth.decorators import login_required
+from django.template.loader import render_to_string
+import json
+from django.http import HttpResponse
+
+@login_required
+def add_review(request):
+    form = ProductReviewForm(request.POST)
+    if form.is_valid():
+        review = form.save(commit=False)
+        slug = request.POST.get('slug')
+        product = Product.active.get(slug=slug)
+        review.user = request.user
+        review.product = product
+        review.save()
+        template = "catalog/product_review.html"
+        html = render_to_string(template, {'review': review })
+        response = json.dumps({'success':'True', 'html': html})
+    else:
+        html = form.errors.as_ul()
+        response = json.dumps({'success':'False', 'html': html})
+    return HttpResponse(response, content_type='application/javascript; charset=utf-8')
