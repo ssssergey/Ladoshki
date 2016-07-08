@@ -24,10 +24,24 @@
             {% else %}
                 Цена: {{ p.price }} руб.
             {% endif %}
-            <br/><br/>
-
-            <h3>Размеры</h3>
-            {{ p.sizes }}
+            <br/>
+            <br/>
+            {% if p.brand %}
+                <p>Бренд: "{{ p.brand }}"</p>
+                <br/>
+            {% endif %}
+            {% if p.country %}
+                <p>Страна: {{ p.country }}</p>
+                <br/>
+            {% endif %}
+            {% if p.color %}
+                <p>Цвет: {{ p.color }}</p>
+                <br/>
+            {% endif %}
+            {% if p.sizes != '0' %}
+                <h3>Размеры</h3>
+                {{ p.sizes }}
+            {% endif %}
             <h3>Описание</h3>
             {{ p.description }}
         </div>

@@ -1,32 +1,45 @@
 <div class="cat-menu">
-<h3>Категории</h3>
-<hr>
-<h4>Мальчики</h4>
-<ul class="cat_list">
-    {% with boys_cat as cats %}
-        {% for c in cats %}
-            <li>
-                {% ifequal c.get_absolute_url request_path %}
-                    {{ c.name }}<br/>
-                {% else %}
-                    <a href="{{ c.get_absolute_url_boys }}" class="category">{{ c.name }}</a><br/>
-                {% endifequal %}
-            </li>
-        {% endfor %}
-    {% endwith %}
-</ul>
-<h4>Девочки</h4>
-<ul class="cat_list">
-    {% with girls_cat as cats %}
-        {% for c in cats %}
-            <li>
-                {% ifequal c.get_absolute_url request_path %}
-                    {{ c.name }}<br/>
-                {% else %}
-                    <a href="{{ c.get_absolute_url_girls }}" class="category">{{ c.name }}</a><br/>
-                {% endifequal %}
-            </li>
-        {% endfor %}
-    {% endwith %}
-</ul>
+    <h3>Категории</h3>
+    <hr>
+    <h4>Мальчики</h4>
+    <ul class="cat_list">
+        {% with boys_cat as cats %}
+            {% for c in cats %}
+                {% if c.name != 'Для самых маленьких' %}
+                    <li>
+                        {% ifequal c.get_absolute_url request_path %}
+                            {{ c.name }}<br/>
+                        {% else %}
+                            <a href="{{ c.get_absolute_url_boys }}" class="category">{{ c.name }}</a><br/>
+                        {% endifequal %}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        {% endwith %}
+    </ul>
+    <h4>Девочки</h4>
+    <ul class="cat_list">
+        {% with girls_cat as cats %}
+            {% for c in cats %}
+                {% if c.name != 'Для самых маленьких' %}
+                    <li>
+                        {% ifequal c.get_absolute_url request_path %}
+                            {{ c.name }}<br/>
+                        {% else %}
+                            <a href="{{ c.get_absolute_url_girls }}" class="category">{{ c.name }}</a><br/>
+                        {% endifequal %}
+                    </li>
+                {% endif %}
+            {% endfor %}
+        {% endwith %}
+    </ul>
+    <h4 style="color: white!important;">
+        {% ifequal "http://xn----7sbabmjsidtifss4m.xn--p1ai/category/dlya-samyh-malenkih/boy/" request_path %}
+            Для самых маленьких<br/>
+        {% else %}
+            <a style="color: white!important;" href="http://xn----7sbabmjsidtifss4m.xn--p1ai/category/dlya-samyh-malenkih/boy/" class="category">Для
+                самых маленьких</a><br/>
+        {% endifequal %}
+    </h4>
+
 </div>

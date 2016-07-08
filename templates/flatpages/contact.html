@@ -1,0 +1,41 @@
+<div class="container">
+    <p>Детали уточняйте по телефону:
+        <a href=" tel: 8(917)5013389">8 (917) 501-33-89</a>
+    </p>
+
+    <p>Доступны по Viber и WhatsApp:
+        <a href="tel: 8(917)5013389">8 (917) 501-33-89</a> и <a href="tel: 8(985)3061343">8 (985) 306-13-43</a>
+    </p>
+
+    <p>Наша страница в Вконтакте: <a href="https://new.vk.com/ladoshkiteremok"><i class="fa fa-vk fa-2x"
+                                                                                  aria-hidden="true"></i></a>
+
+    <p>
+
+    <p>Наша страница в Инстаграм: <a href="https://www.instagram.com/ladoshkizheldor/"><i class="fa fa-instagram fa-2x"
+                                                                                          aria-hidden="true"></i></a>
+
+    <p>
+
+    <p>Местоположение: ТЦ "Теремок", Юбилейная ул. 6 стр.1, Железнодорожный, Балашиха</p>
+</div>
+<div id="map">
+    Google Maps
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgm2-ORIhtHlegZTKlPt2TqkOS7cQb2iM&callback=initMap"></script>
+<script>
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            mapTypeId: google.maps.MapTypeId.HYBRID,
+            center: {lat: 55.740855, lng: 38.014474},
+            zoom: 13,
+            minZoom: 13,
+            disableDefaultUI: true,
+            scaleControl: true,
+            zoomControl: true,
+            draggable: true,
+            scrollwheel: true,
+        });
+    }
+</script>
+

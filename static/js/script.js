@@ -25,7 +25,8 @@ function slideToggleReviewForm() {
     jQuery("#add_review").removeClass();
 }
 
-function addProductReview() {
+function addProductReview(e) {
+    e.preventDefault();
 // build an object of review data to submit
     var review = {
         title: jQuery("#id_title").val(),
@@ -59,7 +60,6 @@ function addProductReview() {
         //data: {csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value},
         dataType: "json",
         success: function (response) {
-            console.log(response);
             jQuery("#review_errors").empty();
             if (response.success == "True") {
                 jQuery("#submit_review").attr('disabled', 'disabled');

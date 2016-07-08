@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.contrib.auth.forms import UserCreationForm
+from forms import RegisterForm
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.core import urlresolvers
@@ -10,7 +10,7 @@ from django.http import HttpResponseRedirect
 def register(request, template_name="registration/register.html"):
     if request.method == 'POST':
         postdata = request.POST.copy()
-        form = UserCreationForm(postdata)
+        form = RegisterForm(postdata)
         if form.is_valid():
             form.save()
             un = postdata.get('username', '')
@@ -23,7 +23,7 @@ def register(request, template_name="registration/register.html"):
                 url = urlresolvers.reverse('catalog_home')
                 return HttpResponseRedirect(url)
     else:
-        form = UserCreationForm()
+        form = RegisterForm()
     page_title = u'Регистрация пользователя'
     return render_to_response(template_name, locals(), context_instance=RequestContext(request))
 
