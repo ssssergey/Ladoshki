@@ -14,6 +14,8 @@ $(document).ready(function () {
     jQuery("#add_review").click(slideToggleReviewForm);
     jQuery("#add_review").addClass('visible');
     jQuery("#cancel_review").click(slideToggleReviewForm);
+
+
 });
 
 // toggles visibility of "write review" link
@@ -73,6 +75,23 @@ function addProductReview(e) {
                 jQuery("#review_errors").append(response.html);
             }
         }
+    });
+}
+
+$(window).on("load", function () {
+    equalHeight($(".thumbnail"));
+});
+
+function equalHeight(group) {
+    var tallest = 0;
+    group.each(function () {
+        var thisHeight = $(this).height();
+        if (thisHeight > tallest) {
+            tallest = thisHeight;
+        }
+    });
+    group.each(function () {
+        $(this).height(tallest);
     });
 }
 

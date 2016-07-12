@@ -14,10 +14,10 @@ LOGIN_REDIRECT_URL = '/'
 AUTH_PROFILE_MODULE = 'accounts.userprofile'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# if os.name != 'nt':
-#     DEBUG = False
-# else:
-DEBUG = True
+if os.name != 'nt':
+    DEBUG = False
+else:
+    DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -144,7 +144,7 @@ MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 
 SITE_NAME = u'Ладошки'
-META_KEYWORDS = u'детская одежда, одежда для мальчиков, одежда для девочек, дети, детские товары, одежда для детей, Балашиха, Железнодорожный, Московская область'
+META_KEYWORDS = u'магазин детской одежды, ладошки, Ладошки, одежда для детей, Балашиха, Железнодорожный'
 META_DESCRIPTION = u'Ладошки - это магазин детской одежды для жителей Железнодорожного и Балашихи'
 
 ADMINS = [('lse', 'lse1983@mail.ru')]

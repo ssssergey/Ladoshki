@@ -59,7 +59,7 @@ class Product(models.Model):
         ('UNI', u'Унисекс'),
     )
 
-    name = models.CharField(u'Название товара', max_length=255, unique=True)
+    name = models.CharField(u'Название товара', max_length=255)
     slug = models.SlugField(max_length=255, unique=True,
                             help_text='Unique value for product page URL, created from name.')
     gender = models.CharField(u'Пол', max_length=4, choices=GENDER_CHOICE, default='BOY')
