@@ -62,7 +62,7 @@ ROOT_URLCONF = 'Ladoshki.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,  'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -91,8 +91,7 @@ DATABASES = {
         'PASSWORD': pg_password,
         'HOST': 'localhost',
         'PORT': '',
-    }
-
+    },
 }
 
 # Password validation
@@ -135,10 +134,9 @@ if os.name != 'nt':
     MEDIA_ROOT = '/home/lse/web/Ladoshki/media'
 else:
     STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+        os.path.join(BASE_DIR, "static"),
+    ]
     MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
 
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
