@@ -1,3 +1,15 @@
+body {
+    padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.hero-spacer {
+    margin-top: 20px;
+}
+
+.hero-feature {
+    margin-bottom: 30px;
+}
+
 #id_q {
     margin: 5px auto;
 }
@@ -38,6 +50,7 @@ li a.category:hover {
 }
 
 footer {
+    margin: 50px 0;
     text-align: center;
     background-color: gainsboro;
     clear: both;
@@ -45,7 +58,7 @@ footer {
 }
 
 footer a {
-    padding: 30px;
+    margin: 30px;
 }
 
 .title {
@@ -72,11 +85,11 @@ form#search input.btn {
 }
 
 .hidden {
-    display: none!important;
+    display: none !important;
 }
 
 .visible {
-    display: block!important;
+    display: block !important;
 }
 
 .new_review {
@@ -85,4 +98,49 @@ form#search input.btn {
 
 .cb {
     clear: both;
+}
+
+.panel-heading {
+    background-color: #168DE2 !important;
+}
+
+ul.errorlist {
+    background-color: Red;
+    color: White;
+}
+
+/* styles for shopping cart page */
+table#shopping_cart {
+    width : 100%;
+    border-collapse: collapse;
+    color: #616161;
+}
+
+h1, caption {
+    text-align: left;
+    font-size: x-large;
+    margin-bottom: 15px;
+    color: Black;
+}
+
+th, td {
+    text-align: left;
+    padding: 3px;
+}
+
+thead th {
+    color: White;
+    background-color: #616161;
+}
+
+tfoot th {
+    height: 40px;
+}
+
+table#shopping_cart th.right, td.right {
+    text-align: right;
+}
+
+a.cart {
+    color: DarkOrange;
 }

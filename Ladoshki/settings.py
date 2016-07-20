@@ -14,10 +14,12 @@ LOGIN_REDIRECT_URL = '/'
 AUTH_PROFILE_MODULE = 'accounts.userprofile'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.name != 'nt':
-    DEBUG = False
-else:
-    DEBUG = True
+# if os.name != 'nt':
+#     DEBUG = False
+# else:
+#     DEBUG = True
+
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -26,6 +28,9 @@ SITE_ID = 1
 PRODUCTS_PER_PAGE = 12
 
 PRODUCTS_PER_ROW = 4
+
+SESSION_AGE_DAYS = 7
+SESSION_COOKIE_AGE = 60 * 60 * 24 * SESSION_AGE_DAYS
 
 # Application definition
 
@@ -42,7 +47,8 @@ INSTALLED_APPS = [
     'catalog',
     'search',
     'stats',
-    'accounts'
+    'accounts',
+    'cart',
 ]
 
 MIDDLEWARE_CLASSES = [

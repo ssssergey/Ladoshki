@@ -1,6 +1,14 @@
-<a href="{% url 'catalog_home' %}">Главная</a>
-{% with flatpage_list as pages %}
-    {% for page in pages %}
-        <a href="{{ page.url }}">{{ page.title }}</a>
-    {% endfor %}
-{% endwith %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <a href="{% url 'catalog_home' %}">Главная</a>
+        </div>
+        {% with flatpage_list as pages %}
+            {% for page in pages %}
+                <div class="col-md-3">
+                    <a href="{{ page.url }}">{{ page.title }}</a>
+                </div>
+            {% endfor %}
+        {% endwith %}
+    </div>
+</div>

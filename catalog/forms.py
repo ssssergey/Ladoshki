@@ -16,7 +16,7 @@ class ProductAdminForm(forms.ModelForm):
 
 class ProductAddToCartForm(forms.Form):
     quantity = forms.IntegerField(
-        widget=forms.TextInput(attrs={'size': '2', 'value': '1', 'class': 'quantity', 'maxlength': '5'}),
+        widget=forms.TextInput(attrs={'size': '2', 'value': '1', 'class': 'quantity form-control', 'maxlength': '5'}),
         error_messages={'invalid': u'Введите число.'}, min_value=1, label=u'Количество')
     product_slug = forms.CharField(widget=forms.HiddenInput())
     # override the default __init__ so we can set the request

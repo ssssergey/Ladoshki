@@ -1,45 +1,115 @@
 <div class="cat-menu">
     <h3>Категории</h3>
     <hr>
-    <h4>Мальчики</h4>
-    <ul class="cat_list">
-        {% with boys_cat as cats %}
-            {% for c in cats %}
-                {% if c.name != 'Для самых маленьких' %}
-                    <li>
-                        {% ifequal c.get_absolute_url request_path %}
-                            {{ c.name }}<br/>
-                        {% else %}
-                            <a href="{{ c.get_absolute_url_boys }}" class="category">{{ c.name }}</a><br/>
-                        {% endifequal %}
-                    </li>
-                {% endif %}
-            {% endfor %}
-        {% endwith %}
-    </ul>
-    <h4>Девочки</h4>
-    <ul class="cat_list">
-        {% with girls_cat as cats %}
-            {% for c in cats %}
-                {% if c.name != 'Для самых маленьких' %}
-                    <li>
-                        {% ifequal c.get_absolute_url request_path %}
-                            {{ c.name }}<br/>
-                        {% else %}
-                            <a href="{{ c.get_absolute_url_girls }}" class="category">{{ c.name }}</a><br/>
-                        {% endifequal %}
-                    </li>
-                {% endif %}
-            {% endfor %}
-        {% endwith %}
-    </ul>
-    <h4 style="color: white!important;">
-        {% ifequal "http://xn----7sbabmjsidtifss4m.xn--p1ai/category/dlya-samyh-malenkih/boy/" request_path %}
-            Для самых маленьких<br/>
-        {% else %}
-            <a style="color: white!important;" href="http://xn----7sbabmjsidtifss4m.xn--p1ai/category/dlya-samyh-malenkih/boy/" class="category">Для
-                самых маленьких</a><br/>
-        {% endifequal %}
-    </h4>
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Мальчики</a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table class="table">
+                        {% with boys_cat as cats %}
+                            {% for c in cats %}
+                                {% if c.name != 'Для самых маленьких' %}
+                                    <tr>
+                                        <td>
+                                            {% ifequal c.get_absolute_url request_path %}
+                                                {{ c.name }}
+                                            {% else %}
+                                                <a href="{{ c.get_absolute_url_boys }}"
+                                                   class="category">{{ c.name }}</a>
+                                            {% endifequal %}
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        {% endwith %}
+                    </table>
+                </div>
+            </div>
+
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Девочки</a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table class="table">
+                        {% with girls_cat as cats %}
+                            {% for c in cats %}
+                                {% if c.name != 'Для самых маленьких' %}
+                                    <tr>
+                                        <td>
+                                            {% ifequal c.get_absolute_url request_path %}
+                                                {{ c.name }}
+                                            {% else %}
+                                                <a href="{{ c.get_absolute_url_girls }}"
+                                                   class="category">{{ c.name }}</a>
+                                            {% endifequal %}
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        {% endwith %}
+                    </table>
+                </div>
+            </div>
+
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-parent="#accordion"
+                       style="color: white!important;"
+                       href="http://xn----7sbabmjsidtifss4m.xn--p1ai/category/dlya-samyh-malenkih/"
+                       class="category">Для
+                        самых маленьких</a>
+                </h4>
+            </div>
+
+        </div>
+    </div>
+    {#    <h4>Мальчики</h4>#}
+    {#    <ul class="cat_list">#}
+    {#        {% with boys_cat as cats %}#}
+    {#            {% for c in cats %}#}
+    {#                {% if c.name != 'Для самых маленьких' %}#}
+    {#                    <li>#}
+    {#                        {% ifequal c.get_absolute_url request_path %}#}
+    {#                            {{ c.name }}<br/>#}
+    {#                        {% else %}#}
+    {#                            <a href="{{ c.get_absolute_url_boys }}" class="category">{{ c.name }}</a><br/>#}
+    {#                        {% endifequal %}#}
+    {#                    </li>#}
+    {#                {% endif %}#}
+    {#            {% endfor %}#}
+    {#        {% endwith %}#}
+    {#    </ul>#}
+    {#    <h4>Девочки</h4>#}
+    {#    <ul class="cat_list">#}
+    {#        {% with girls_cat as cats %}#}
+    {#            {% for c in cats %}#}
+    {#                {% if c.name != 'Для самых маленьких' %}#}
+    {#                    <li>#}
+    {#                        {% ifequal c.get_absolute_url request_path %}#}
+    {#                            {{ c.name }}<br/>#}
+    {#                        {% else %}#}
+    {#                            <a href="{{ c.get_absolute_url_girls }}" class="category">{{ c.name }}</a><br/>#}
+    {#                        {% endifequal %}#}
+    {#                    </li>#}
+    {#                {% endif %}#}
+    {#            {% endfor %}#}
+    {#        {% endwith %}#}
+    {#    </ul>#}
+    {#    <h4 style="color: white!important;">#}
+    {#        {% ifequal "http://xn----7sbabmjsidtifss4m.xn--p1ai/category/dlya-samyh-malenkih/boy/" request_path %}#}
+    {#            Для самых маленьких<br/>#}
+    {#        {% else %}#}
+    {#            <a style="color: white!important;" href="http://xn----7sbabmjsidtifss4m.xn--p1ai/category/dlya-samyh-malenkih/boy/" class="category">Для#}
+    {#                самых маленьких</a><br/>#}
+    {#        {% endifequal %}#}
+    {#    </h4>#}
 
 </div>

@@ -7,7 +7,6 @@
             {#        {{ p.image_caption }}#}
         </div>
 
-
         <div class="col-md-4 product-info">
             <h1>{{ p.name }}</h1>
             В категори{{ categories.count|pluralize:"и,ях" }}:
@@ -44,7 +43,18 @@
             {% endif %}
             <h3>Описание</h3>
             {{ p.description }}
+            <hr>
+            <div>
+                <form method="post" action="." class="cart form-inline">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <br/>
+                    <input class="btn btn-warning" type="submit" value="В корзину" name="submit" alt="Add To Cart"/>
+                </form>
+            </div>
         </div>
+
+
     </div>
 
 

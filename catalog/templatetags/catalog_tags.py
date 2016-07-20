@@ -1,14 +1,15 @@
 from django import template
-# from cart import cart
+from cart import cart
 from catalog.models import Category
 from django.contrib.flatpages.models import FlatPage
 from django.db.models import Q
 register = template.Library()
 
-# @register.inclusion_tag("tags/cart_box.html")
-# def cart_box(request):
-#     cart_item_count = cart.cart_distinct_item_count(request)
-#     return {'cart_item_count': cart_item_count }
+
+@register.inclusion_tag("tags/cart_box.html")
+def cart_box(request):
+    cart_item_count = cart.cart_distinct_item_count(request)
+    return {'cart_item_count': cart_item_count}
 
 
 @register.inclusion_tag("tags/category_list.html")
