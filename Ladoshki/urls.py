@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^cart/', include('cart.urls')),
     url(r'^search/', include('search.urls')),
+    url(r'^ordering/', include('ordering.urls')),
     url(r'^', include('catalog.urls')),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     url(r'^accounts/', include('accounts.urls')),

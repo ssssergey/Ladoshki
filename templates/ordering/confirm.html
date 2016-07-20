@@ -1,10 +1,7 @@
 {% extends "catalog.html" %}
-{% load catalog_filters %}
 {% block content %}
-    <h1>Корзина</h1>
-    Количество товаров в корзине: {{ cart_item_count }}
     <table class="table" summary="Your Shopping Cart" id="shopping_cart">
-        <caption>Ваша корзина</caption>
+        <caption>Проверьте еще раз правильность заявки и нажмите "Продолжить"</caption>
         <thead>
         <tr>
             <th scope="col">Товар</th>
@@ -27,21 +24,7 @@
                     </td>
                     <td>{{ item.price }}</td>
                     <td class="right">
-                        <form method="post" action="." class="cart">
-                            {% csrf_token %}
-                            <label for="quantity">Количество:</label>
-                            <input type="text" name="quantity" value="{{ item.quantity }}" id="quantity" size="2"
-                                   class="quantity" maxlength="5"/>
-                            <input type="hidden" name="item_id" value="{{ item.id }}"/>
-                            <input type="submit" name="submit" value="Сохранить"/>
-                        </form>
-                    </td>
-                    <td>
-                        <form method="post" action="." class="cart">
-                            {% csrf_token %}
-                            <input type="hidden" name="item_id" value="{{ item.id }}"/>
-                            <input type="submit" name="submit" value="Удалить"/>
-                        </form>
+                        Количество: {{ item.quantity }}
                     </td>
                     <td class="right">{{ item.total }}</td>
                 </tr>
@@ -66,7 +49,7 @@
         {% if cart_items %}
             <tr>
                 <th class="right" colspan="6">
-                    <a href="{% url 'confirm_order' %}">Отправить заявку</a>
+                    <a href="{% url 'send_email' %}">Продолжить</a>
                 </th>
             </tr>
         {% endif %}
