@@ -3,6 +3,10 @@ from cart import cart
 from catalog.models import Category
 from django.contrib.flatpages.models import FlatPage
 from django.db.models import Q
+from django.contrib.sites.shortcuts import get_current_site
+
+
+
 register = template.Library()
 
 

@@ -1,8 +1,6 @@
-
 {% with cart_item_count as cart_count %}
     <a href="{% url 'show_cart' %}">
-        Корзина
-        <br/>
-        Товаров: {{ cart_count }}
+        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+        Корзина ({{ cart_count }})
     </a>
 {% endwith %}

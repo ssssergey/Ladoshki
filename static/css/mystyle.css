@@ -62,8 +62,14 @@ footer a {
 }
 
 .title {
-    text-shadow: 0 0 10px #168DE2
+    text-shadow: 0 0 5px #168DE2;
+    text-align: center;
 }
+
+.discount {
+    text-shadow: 0 0 5px red;
+}
+
 
 .product-image {
     margin-top: 20px;
@@ -143,4 +149,60 @@ table#shopping_cart th.right, td.right {
 
 a.cart {
     color: DarkOrange;
+}
+
+/* Для ленточек Новинка и Скидка */
+.thumbnail {
+    position: relative;
+}
+
+.sale-ribbon {
+    position: absolute;
+    z-index: 10;
+    top: 20px;
+    left: 0;
+    height: 22px;
+    width: auto;
+}
+
+.sale {
+    background: #eb5e58;
+    border-radius: 0 4px 4px 0;
+    color: #fff;
+    display: inline-block;
+    float: left;
+    font-family: Oswald, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: lighter;
+    height: 100%;
+    padding: 3px 5px;
+}
+
+.new-ribbon {
+    position: absolute;
+    z-index: 10;
+    top: 0px;
+    right: 0;
+    height: 22px;
+    width: auto;
+}
+
+.new {
+    background: #63aceb;
+    border-radius: 0 4px 4px 0;
+    color: #fff;
+    display: inline-block;
+    float: left;
+    font-family: Oswald, Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: lighter;
+    height: 100%;
+    padding: 3px 5px;
+}
+
+.thumbnail:hover > a > img {
+    filter: url(filter.svg#gray);
+    -webkit-filter: grayscale(1);
+    /*-webkit-filter: blur(2px);*/
+	-o-filter: url(filter.svg#gray);
 }

@@ -1,14 +1,35 @@
 <div class="col-md-3 col-sm-4 col-xs-6 hero-feature">
     <div class="thumbnail">
         <a href="{{ p.get_absolute_url }}">
-            <img src="{{ p.thumbnail.url }}" alt="{{ p.name }}" class="bn"/>
+            {% if p.new_image %}
+                <img src="{{ p.new_image.url_200x200 }}" alt="{{ p.name }}" class="bn"/>
+            {% elif p.image %}
+                <img src="{{ p.thumbnail.url }}" alt="{{ p.name }}" class="bn"/>
+            {% else %}
+                <img src="http://placehold.it/200x200" alt="{{ p.name }}" class="bn"/>
+            {% endif %}
 
             <div class="caption">
                 <br/>
                 {{ p.name }}
                 <br>
-                {{ p.price | floatformat:"0" }} руб.
+                {% if p.sale_price %}
+                    <del><span style="background-color: #eb5e58; padding: 0 5px; color: white">{{ p.old_price }} руб.</span></del>
+                    <br/>
+                {% endif %}
+                <strong>{{ p.price }} руб.</strong>
+                {#                {{ p.price | floatformat:"0" }} руб.#}
             </div>
         </a>
+        {% if p.sale_price %}
+            <div class="sale-ribbon">
+                <span class="sale">СКИДКА</span>
+            </div>
+        {% endif %}
+        {% if p.new %}
+            <div class="new-ribbon">
+                <span class="new">НОВИНКА</span>
+            </div>
+        {% endif %}
     </div>
 </div>

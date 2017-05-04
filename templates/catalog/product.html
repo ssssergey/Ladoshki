@@ -3,12 +3,17 @@
 {% block content %}
     <div class="row">
         <div class="col-md-8 product-image">
-            <p><img src="{{ p.image.url }}" alt="{{ p.name }}" style="width: 100%"/></p>
-            {#        {{ p.image_caption }}#}
+            {% if p.new_image %}
+                <p><img src="{{ p.new_image.url }}" alt="{{ p.name }}" style="width: 100%"/></p>
+            {% elif p.image %}
+                <p><img src="{{ p.image.url }}" alt="{{ p.name }}" style="width: 100%"/></p>
+            {% else %}
+                <p><img src="http://placehold.it/500x500" alt="{{ p.name }}" style="width: 100%"/></p>
+            {% endif %}
         </div>
 
         <div class="col-md-4 product-info">
-            <h1>{{ p.name }}</h1>
+            <h1 style="text-align: center">{{ p.name }}</h1>
             В категори{{ categories.count|pluralize:"и,ях" }}:
             {% for c in categories %}
                 <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
@@ -61,6 +66,11 @@
     <div class="row cb"><br/><br/></div>
 
     <div class="col-md-12">
+        <div class="social-share">
+            <a class="btn btn-default" href="http://vkontakte.ru/share.php?url={{ request.build_absolute_uri }}{{ request.get_full_path }}" rel="nofollow" target="_blank">Поделиться <i class="fa fa-vk fa-lg"></i></a>
+            <a class="btn btn-default" href="http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st._surl={{ request.build_absolute_uri }}" rel="nofollow"
+               target="_blank">Поделиться <i class="fa fa-odnoklassniki fa-lg"></i></a>
+        </div>
         <h3>Отзывы на данный товар</h3>
         {% if request.user.is_authenticated %}
             <a id="add_review">Написать отзыв</a>

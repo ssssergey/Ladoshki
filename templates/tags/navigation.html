@@ -6,6 +6,7 @@
 {#</ul>#}
 {#<div class="cb"></div>#}
 {##}
+{% load catalog_tags %}
 
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -50,7 +51,9 @@
                         <a href="{% url 'django.contrib.auth.views.login' %}">Войти</a>
                     </li>
                 {% endif %}
-
+                    <li>
+                        {% cart_box request %}
+                    </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->

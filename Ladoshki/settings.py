@@ -21,7 +21,7 @@ AUTH_PROFILE_MODULE = 'accounts.userprofile'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 SITE_ID = 1
 
@@ -38,6 +38,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = email_host_user
 EMAIL_HOST_PASSWORD = email_host_password
 EMAIL_PORT = 587
+SERVER_EMAIL = 'django@my-domain.com'
 
 # EMAIL_HOST = 'smtp.yandex.ru'
 # EMAIL_HOST_USER = email_host_user
@@ -62,7 +63,6 @@ INSTALLED_APPS = [
     'stats',
     'accounts',
     'cart',
-    'ordering',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -149,14 +149,17 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
 if os.name != 'nt':
-    STATIC_ROOT = '/home/lse/web/Ladoshki/static'
-    MEDIA_ROOT = '/home/lse/web/Ladoshki/media'
-else:
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, "static"),
-    ]
-    MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'

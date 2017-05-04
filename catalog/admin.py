@@ -6,12 +6,13 @@ from catalog.models import Product, Category, ProductReview
 class ProductAdmin(admin.ModelAdmin):
     # form = ProductAdminForm
     # sets values for how the admin site lists your products
-    list_display = ('name', 'price', 'old_price', 'created_at', 'updated_at',)
+    list_display = ('admin_image', 'name', 'price', 'old_price', 'created_at', 'updated_at',)
     list_display_links = ('name',)
     list_per_page = 50
     ordering = ['-created_at']
     search_fields = ['name', 'description', 'meta_keywords', 'meta_description']
-    exclude = ('created_at', 'updated_at',)
+    exclude = ('created_at', 'updated_at', 'image', 'thumbnail')
+    readonly_fields = ('admin_image',)
     # sets up slug to be generated from product name
     prepopulated_fields = {'slug' : ('name',)}
 # registers your product model with the admin site

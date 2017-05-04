@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<p>Дата заказа: {% now "d.m.Y H:i" %}</p>
+
+<p>Номер телефона клиента: {{ phone }}</p>
+{% if email %}
+    <p>Электронная почта: {{ email }}</p>
+{% endif %}
+
+<table style="width: 100%;" border="1" cellpadding="5">
+    <thead style="background: #bababa">
+    <tr>
+        <th scope="col" style="text-align: left">Товар</th>
+        <th scope="col" style="text-align: right">Цена</th>
+        <th scope="col" style="text-align: right">Количество</th>
+        <th scope="col" style="text-align: right">Сумма</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% if cart_items %}
+        {% for item in cart_items %}
+            <tr>
+                <td style="text-align: left">
+                    <a href="{{ domain_url }}{{ item.get_absolute_url }}" class="cart">
+                        {{ item.name }}
+                    </a>
+                </td>
+                <td style="text-align: right">{{ item.price }}</td>
+                <td style="text-align: right">
+                    {{ item.quantity }}
+                </td>
+                <td style="text-align: right">{{ item.total }}</td>
+            </tr>
+        {% endfor %}
+    {% else %}
+        <tr>
+            <td colspan="6" style="height:30px;">
+                Ваша корзина пуста.
+            </td>
+        </tr>
+    {% endif %}
+    </tbody>
+    <tfoot>
+    <tr>
+        <th style="text-align: right" colspan="3">
+            Сумма:
+        </th>
+        <th style="text-align: right">
+            {{ cart_subtotal }}
+        </th>
+    </tr>
+    </tfoot>
+</table>
+</body>
+</html>
